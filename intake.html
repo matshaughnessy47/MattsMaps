@@ -27,21 +27,23 @@
         Tell me about your project and I'll get back to you with options and pricing.
     </p>
 
-    <form id="projectForm">
+    <form
+        action="https://script.google.com/macros/s/AKfycbyKt3xWwFdV4825_E7PZ5RVoH6Ln67OarAoerk1touPtzESLAG3Pz_aqL2hfj-H2nw/exec"
+        method="POST">
 
         <h2>Client Information</h2>
 
         <label for="clientName">Client Name *</label>
-        <input type="text" id="clientName" required>
+        <input type="text" id="clientName" name="clientName" required>
 
         <label for="organization">Organization / Agency</label>
-        <input type="text" id="organization">
+        <input type="text" id="organization" name="organization">
 
         <label for="email">Email Address *</label>
-        <input type="email" id="email" required>
+        <input type="email" id="email" name="email" required>
 
         <label for="phone">Phone Number *</label>
-        <input type="tel" id="phone" required>
+        <input type="tel" id="phone" name="phone" required>
 
         <h2>Project Location</h2>
 
@@ -49,13 +51,13 @@
         <input
             type="text"
             id="location"
+            name="location"
             placeholder="Address, County, State, Watershed, Coordinates..."
-            required
-        >
+            required>
 
         <h2>Project Type</h2>
 
-        <select id="projectType" required>
+        <select id="projectType" name="projectType" required>
             <option value="">Select Project Type</option>
             <option>Custom Cartography</option>
             <option>GIS Analysis</option>
@@ -71,7 +73,7 @@
 
         <h2>Desired Aesthetic</h2>
 
-        <select id="aesthetic" required>
+        <select id="aesthetic" name="aesthetic" required>
             <option value="">Select Desired Aesthetic</option>
             <option>Vintage Cartographic</option>
             <option>National Park Style</option>
@@ -85,7 +87,7 @@
 
         <h2>Primary Deliverable</h2>
 
-        <select id="deliverables" required>
+        <select id="deliverables" name="deliverables" required>
             <option value="">Select Deliverable</option>
             <option>PDF Map</option>
             <option>Print-Ready Poster</option>
@@ -98,11 +100,14 @@
 
         <h2>Desired Delivery Date</h2>
 
-        <input type="date" id="deliveryDate">
+        <input
+            type="date"
+            id="deliveryDate"
+            name="deliveryDate">
 
         <h2>Project Budget</h2>
 
-        <select id="budget" required>
+        <select id="budget" name="budget" required>
             <option value="">Select Budget Range</option>
             <option>Under $250</option>
             <option>$250 - $500</option>
@@ -116,80 +121,17 @@
 
         <textarea
             id="notes"
+            name="notes"
             rows="8"
-            placeholder="Tell me about your project goals, audience, intended map use, preferred styles, available data, and any examples you'd like me to reference."
-        ></textarea>
+            placeholder="Tell me about your project goals, audience, intended map use, preferred styles, available data, and any examples you'd like me to reference."></textarea>
 
         <button type="submit">
             Submit Project Request
         </button>
 
-        <div id="statusMessage"></div>
-
     </form>
 
 </div>
-
-<script>
-
-document.getElementById("projectForm").addEventListener("submit", async function(e) {
-
-    e.preventDefault();
-
-    const formData = {
-
-        clientName: document.getElementById("clientName").value,
-        organization: document.getElementById("organization").value,
-        email: document.getElementById("email").value,
-        phone: document.getElementById("phone").value,
-        location: document.getElementById("location").value,
-
-        projectType: document.getElementById("projectType").value,
-
-        aesthetic: document.getElementById("aesthetic").value,
-
-        deliverables: document.getElementById("deliverables").value,
-
-        deliveryDate: document.getElementById("deliveryDate").value,
-
-        budget: document.getElementById("budget").value,
-
-        notes: document.getElementById("notes").value
-    };
-
-    const status = document.getElementById("statusMessage");
-
-    try {
-
-      await fetch(
-    "https://script.google.com/macros/s/AKfycbyKt3xWwFdV4825_E7PZ5RVoH6Ln67OarAoerk1touPtzESLAG3Pz_aqL2hfj-H2nw/exec",
-    {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-            "Content-Type": "text/plain;charset=utf-8"
-        },
-        body: JSON.stringify(formData)
-    }
-);
-
-status.innerHTML =
-"<p style='color:green; font-weight:bold;'>✓ Thank you! Your project request has been submitted.</p>";
-
-this.reset();
-
-    
-
-    } catch (error) {
-
-        status.innerHTML =
-        "<p style='color:red; font-weight:bold;'>Submission failed. Please try again.</p>";
-
-    }
-
-});
-
-</script>
 
 </body>
 </html>
