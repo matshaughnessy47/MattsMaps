@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Matt's Maps | Client Intake Form</title>
 
     <link rel="stylesheet" href="css/style.css">
@@ -12,8 +11,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
-
 </head>
+
 <body>
 
 <div class="container">
@@ -56,66 +55,24 @@
 
         <h2>Project Type</h2>
 
-        <div class="checkbox-group">
-
-            <label class="checkbox-item">
-                <input type="checkbox" name="projectType" value="Custom Cartography">
-                <span>Custom Cartography</span>
-            </label>
-
-            <label class="checkbox-item">
-                <input type="checkbox" name="projectType" value="GIS Analysis">
-                <span>GIS Analysis</span>
-            </label>
-
-            <label class="checkbox-item">
-                <input type="checkbox" name="projectType" value="StoryMap">
-                <span>StoryMap</span>
-            </label>
-
-            <label class="checkbox-item">
-                <input type="checkbox" name="projectType" value="Interactive Web Map">
-                <span>Interactive Web Map</span>
-            </label>
-
-            <label class="checkbox-item">
-                <input type="checkbox" name="projectType" value="Dashboard Development">
-                <span>Dashboard Development</span>
-            </label>
-
-            <label class="checkbox-item">
-                <input type="checkbox" name="projectType" value="Remote Sensing Analysis">
-                <span>Remote Sensing Analysis</span>
-            </label>
-
-            <label class="checkbox-item">
-                <input type="checkbox" name="projectType" value="Habitat Mapping">
-                <span>Habitat Mapping</span>
-            </label>
-
-            <label class="checkbox-item">
-                <input type="checkbox" name="projectType" value="Fisheries Analysis">
-                <span>Fisheries Analysis</span>
-            </label>
-
-            <label class="checkbox-item">
-                <input type="checkbox" name="projectType" value="Spatial Data Processing">
-                <span>Spatial Data Processing</span>
-            </label>
-
-            <label class="checkbox-item">
-                <input type="checkbox" name="projectType" value="Other">
-                <span>Other</span>
-            </label>
-
-        </div>
+        <select id="projectType" required>
+            <option value="">Select Project Type</option>
+            <option>Custom Cartography</option>
+            <option>GIS Analysis</option>
+            <option>StoryMap</option>
+            <option>Interactive Web Map</option>
+            <option>Dashboard Development</option>
+            <option>Remote Sensing Analysis</option>
+            <option>Habitat Mapping</option>
+            <option>Fisheries Analysis</option>
+            <option>Spatial Data Processing</option>
+            <option>Other</option>
+        </select>
 
         <h2>Desired Aesthetic</h2>
 
         <select id="aesthetic" required>
-
-            <option value="">Select One</option>
-
+            <option value="">Select Desired Aesthetic</option>
             <option>Vintage Cartographic</option>
             <option>National Park Style</option>
             <option>Modern GIS</option>
@@ -124,49 +81,20 @@
             <option>Field Atlas / Survey Style</option>
             <option>Minimalist</option>
             <option>Custom</option>
-
         </select>
 
-        <h2>Deliverables</h2>
+        <h2>Primary Deliverable</h2>
 
-        <div class="checkbox-group">
-
-            <label class="checkbox-item">
-                <input type="checkbox" name="deliverables" value="PDF Map">
-                <span>PDF Map</span>
-            </label>
-
-            <label class="checkbox-item">
-                <input type="checkbox" name="deliverables" value="Print-Ready Poster">
-                <span>Print-Ready Poster</span>
-            </label>
-
-            <label class="checkbox-item">
-                <input type="checkbox" name="deliverables" value="StoryMap">
-                <span>StoryMap</span>
-            </label>
-
-            <label class="checkbox-item">
-                <input type="checkbox" name="deliverables" value="Interactive Web Map">
-                <span>Interactive Web Map</span>
-            </label>
-
-            <label class="checkbox-item">
-                <input type="checkbox" name="deliverables" value="Dashboard">
-                <span>Dashboard</span>
-            </label>
-
-            <label class="checkbox-item">
-                <input type="checkbox" name="deliverables" value="GIS Data Package">
-                <span>GIS Data Package</span>
-            </label>
-
-            <label class="checkbox-item">
-                <input type="checkbox" name="deliverables" value="Technical Report">
-                <span>Technical Report</span>
-            </label>
-
-        </div>
+        <select id="deliverables" required>
+            <option value="">Select Deliverable</option>
+            <option>PDF Map</option>
+            <option>Print-Ready Poster</option>
+            <option>StoryMap</option>
+            <option>Interactive Web Map</option>
+            <option>Dashboard</option>
+            <option>GIS Data Package</option>
+            <option>Technical Report</option>
+        </select>
 
         <h2>Desired Delivery Date</h2>
 
@@ -175,16 +103,13 @@
         <h2>Project Budget</h2>
 
         <select id="budget" required>
-
             <option value="">Select Budget Range</option>
-
             <option>Under $250</option>
             <option>$250 - $500</option>
             <option>$500 - $1,000</option>
             <option>$1,000 - $2,500</option>
             <option>$2,500 - $5,000</option>
             <option>$5,000+</option>
-
         </select>
 
         <h2>Additional Notes</h2>
@@ -207,58 +132,63 @@
 
 <script>
 
-document.getElementById('projectForm').addEventListener('submit', async function(e) {
+document.getElementById("projectForm").addEventListener("submit", async function(e) {
 
     e.preventDefault();
 
-    const projectTypes = Array
-        .from(document.querySelectorAll('input[name="projectType"]:checked'))
-        .map(box => box.value)
-        .join(', ');
-
-    const deliverables = Array
-        .from(document.querySelectorAll('input[name="deliverables"]:checked'))
-        .map(box => box.value)
-        .join(', ');
-
     const formData = {
-        clientName: document.getElementById('clientName').value,
-        organization: document.getElementById('organization').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
-        location: document.getElementById('location').value,
-        projectType: projectTypes,
-        aesthetic: document.getElementById('aesthetic').value,
-        deliverables: deliverables,
-        deliveryDate: document.getElementById('deliveryDate').value,
-        budget: document.getElementById('budget').value,
-        notes: document.getElementById('notes').value
+
+        clientName: document.getElementById("clientName").value,
+        organization: document.getElementById("organization").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        location: document.getElementById("location").value,
+
+        projectType: document.getElementById("projectType").value,
+
+        aesthetic: document.getElementById("aesthetic").value,
+
+        deliverables: document.getElementById("deliverables").value,
+
+        deliveryDate: document.getElementById("deliveryDate").value,
+
+        budget: document.getElementById("budget").value,
+
+        notes: document.getElementById("notes").value
     };
 
-    const status = document.getElementById('statusMessage');
+    const status = document.getElementById("statusMessage");
 
     try {
 
-        await fetch(
-            'https://script.google.com/macros/s/AKfycbyKt3xWwFdV4825_E7PZ5RVoH6Ln67OarAoerk1touPtzESLAG3Pz_aqL2hfj-H2nw/exec',
+        const response = await fetch(
+            "https://script.google.com/macros/s/AKfycbyKt3xWwFdV4825_E7PZ5RVoH6Ln67OarAoerk1touPtzESLAG3Pz_aqL2hfj-H2nw/exec",
             {
-                method: 'POST',
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json'
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify(formData)
             }
         );
 
-        status.innerHTML =
-        '<p style="color:green;"><strong>Thank you!</strong> Your project request has been submitted.</p>';
+        if (response.ok) {
 
-        this.reset();
+            status.innerHTML =
+            "<p style='color:green; font-weight:bold;'>✓ Thank you! Your project request has been submitted.</p>";
+
+            this.reset();
+
+        } else {
+
+            throw new Error("Submission failed");
+
+        }
 
     } catch (error) {
 
         status.innerHTML =
-        '<p style="color:red;"><strong>Error:</strong> Form submission failed. Please try again.</p>';
+        "<p style='color:red; font-weight:bold;'>Submission failed. Please try again.</p>";
 
     }
 
